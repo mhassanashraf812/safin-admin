@@ -10,6 +10,7 @@ const Add = ({token}) => {
   const [image2,setImage2] = useState(false)
   const [image3,setImage3] = useState(false)
   const [image4,setImage4] = useState(false)
+  const [colors, setColors] = useState([]);
 
    const [name, setName] = useState("");
    const [description, setDescription] = useState("");
@@ -33,6 +34,9 @@ const Add = ({token}) => {
       formData.append("subCategory",subCategory)
       formData.append("bestseller",bestseller)
       formData.append("sizes",JSON.stringify(sizes))
+      formData.append("colors", JSON.stringify(colors)); // 🆕
+     // Log formData entries
+     console.log("Colors being sent:", JSON.stringify(colors));
 
       image1 && formData.append("image1",image1)
       image2 && formData.append("image2",image2)
@@ -98,11 +102,11 @@ const Add = ({token}) => {
         <div className='flex flex-col sm:flex-row gap-2 w-full sm:gap-8'>
 
             <div>
-              <p className='mb-2'>Product category</p>
+              <p className='mb-2'>Collection</p>
               <select onChange={(e) => setCategory(e.target.value)} className='w-full px-3 py-2'>
-                  <option value="3 - piece">3 - piece</option>
-                  <option value="Women">Women</option>
-                  <option value="2 - piece">2 - piece</option>
+                  <option value="cord">Cord Sets Collections</option>
+                  <option value="summer">Summer Collections</option>
+                  <option value="winter">Winter Collections</option>
               </select>
             </div>
 
@@ -146,6 +150,27 @@ const Add = ({token}) => {
             </div>
           </div>
         </div>
+        <div>
+  <p className='mb-2'>Product Colors</p>
+  <div className='flex gap-3 flex-wrap'>
+    {["Red", "Blue", "Black", "White", "Green", "Yellow", "Purple", "Brown", "Pink", "Gray"].map(color => (
+      <div
+        key={color}
+        onClick={() =>
+          setColors(prev =>
+            prev.includes(color)
+              ? prev.filter(item => item !== color)
+              : [...prev, color]
+          )
+        }
+      >
+        <p className={`${colors.includes(color) ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>
+          {color}
+        </p>
+      </div>
+    ))}
+  </div>
+</div>
 
         <div className='flex gap-2 mt-2'>
           <input onChange={() => setBestseller(prev => !prev)} checked={bestseller} type="checkbox" id='bestseller' />
