@@ -15,9 +15,11 @@ const Add = ({token}) => {
    const [name, setName] = useState("");
    const [description, setDescription] = useState("");
    const [price, setPrice] = useState("");
-   const [category, setCategory] = useState("3 - piece");
+   const [category, setCategory] = useState("2 Piece");
+   const [collection, setCollection] = useState("Summer");
    const [subCategory, setSubCategory] = useState("Topwear");
    const [bestseller, setBestseller] = useState(false);
+   const [soldOut, setSoldOut] = useState(false);
    const [sizes, setSizes] = useState([]);
 
    const onSubmitHandler = async (e) => {
@@ -31,8 +33,10 @@ const Add = ({token}) => {
       formData.append("description",description)
       formData.append("price",price)
       formData.append("category",category)
+      formData.append("collection",collection)
       formData.append("subCategory",subCategory)
       formData.append("bestseller",bestseller)
+      formData.append("soldOut",soldOut)
       formData.append("sizes",JSON.stringify(sizes))
       formData.append("colors", JSON.stringify(colors)); // 🆕
      // Log formData entries
@@ -102,16 +106,24 @@ const Add = ({token}) => {
         <div className='flex flex-col sm:flex-row gap-2 w-full sm:gap-8'>
 
             <div>
-              <p className='mb-2'>Collection</p>
+              <p className='mb-2'>Filter</p>
               <select onChange={(e) => setCategory(e.target.value)} className='w-full px-3 py-2'>
-                  <option value="cord">Cord Sets Collections</option>
-                  <option value="summer">Summer Collections</option>
-                  <option value="winter">Winter Collections</option>
+                  <option value="2 Piece">2 Piece</option>
+                  <option value="3 Piece">3 Piece</option>
+              
+              </select>
+            </div>
+            <div>
+              <p className='mb-2'>Collection</p>
+              <select value={collection} onChange={(e) => setCollection(e.target.value)} className='w-full px-3 py-2'>
+                  <option value="Cord Set">Cord Sets Collections</option>
+                  <option value="Summer">Summer Collections</option>
+                  <option value="Festive">Festive Collections</option>
               </select>
             </div>
 
             {/* <div>
-              <p className='mb-2'>Sub category</p>
+              <p className='mb-2'>Sub category</p>s
               <select onChange={(e) => setSubCategory(e.target.value)} className='w-full px-3 py-2'>
                   <option value="Topwear">Topwear</option>
                   <option value="Bottomwear">Bottomwear</option>
@@ -175,6 +187,10 @@ const Add = ({token}) => {
         <div className='flex gap-2 mt-2'>
           <input onChange={() => setBestseller(prev => !prev)} checked={bestseller} type="checkbox" id='bestseller' />
           <label className='cursor-pointer' htmlFor="bestseller">Add to bestseller</label>
+        </div>
+        <div className='flex gap-2 mt-2'>
+          <input onChange={() => setSoldOut(prev => !prev)} checked={soldOut} type="checkbox" id='soldOut' />
+          <label className='cursor-pointer' htmlFor="soldOut">Sold Out</label>
         </div>
 
         <button type="submit" className='w-28 py-3 mt-4 bg-black text-white'>ADD</button>

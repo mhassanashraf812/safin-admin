@@ -57,6 +57,7 @@ const List = ({ token }) => {
           <b>Image</b>
           <b>Name</b>
           <b>Category</b>
+          <b>Collection</b>
           <b>Price</b>
           <b className='text-center'>Action</b>
         </div>
@@ -69,6 +70,7 @@ const List = ({ token }) => {
               <img className='w-12' src={item.image[0]} alt="" />
               <p>{item.name}</p>
               <p>{item.category}</p>
+              <p>{item.collection}</p>
               <p>{currency}{item.price}</p>
               <p onClick={()=>removeProduct(item._id)} className='text-right md:text-center cursor-pointer text-lg'>X</p>
             </div>
