@@ -123,6 +123,9 @@ const Add = ({token}) => {
                   <option value="Cord Set">Cord Sets Collections</option>
                   <option value="Summer">Summer Collections</option>
                   <option value="Festive">Festive Collections</option>
+                  <option value="casual">Casual Collections</option>
+                  <option value="ThreePiece">Three Piece Collections</option>
+
               </select>
             </div>
 
