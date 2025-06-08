@@ -15,6 +15,7 @@ const Add = ({token}) => {
    const [name, setName] = useState("");
    const [description, setDescription] = useState("");
    const [price, setPrice] = useState("");
+   const [discountPrice, setDiscountPrice] = useState("");
    const [category, setCategory] = useState("2 Piece");
    const [collection, setCollection] = useState("Summer");
    const [subCategory, setSubCategory] = useState("Topwear");
@@ -32,6 +33,7 @@ const Add = ({token}) => {
       formData.append("name",name)
       formData.append("description",description)
       formData.append("price",price)
+      formData.append("discountPrice", discountPrice)
       formData.append("category",category)
       formData.append("collection",collection)
       formData.append("subCategory",subCategory)
@@ -58,6 +60,7 @@ const Add = ({token}) => {
         setImage3(false)
         setImage4(false)
         setPrice('')
+        setDiscountPrice('')
       } else {
         toast.error(response.data.message)
       }
@@ -68,6 +71,7 @@ const Add = ({token}) => {
     }
    }
 
+   
   return (
     <form onSubmit={onSubmitHandler} className='flex flex-col w-full items-start gap-3'>
         <div>
@@ -134,6 +138,8 @@ const Add = ({token}) => {
             <div>
               <p className='mb-2'>Product Price</p>
               <input onChange={(e) => setPrice(e.target.value)} value={price} className='w-full px-3 py-2 sm:w-[120px]' type="Number" placeholder='25' />
+              <p className='mb-2 mt-2'>Discount Price (optional)</p>
+              <input onChange={(e) => setDiscountPrice(e.target.value)} value={discountPrice} className='w-full px-3 py-2 sm:w-[120px]' type="Number" placeholder='20' />
             </div>
 
         </div>
